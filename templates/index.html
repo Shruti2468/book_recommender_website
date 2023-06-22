@@ -8,25 +8,69 @@
 </head>
 <style>
     .text-white{
-        color:white
-    }
-</style>
-<body style="background-color:black">
+        color:light green
 
-    <nav class="navbar" style="background-color:#00a65a">
-        <a class="navbar-brand">My Book recommender</a>
-        <ul class="nav navbar-nav">
-            <li><a href="/">Home</a></li>
-            <li><a href="/recommend">Recommend</a></li>
-            <li><a>Contact</a></li>
-        </ul>
+    }
+    body {
+    background-image: url('https://wallpaperaccess.com/full/124383.jpg');
+    }
+
+    h1[data-heading="i"] {
+        font-size: 45px;
+        font-family: "Arial Black", sans-serif;
+        text-align: center;
+        color:  white ;
+    }
+
+
+
+@keyframes swipe {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+.card {
+    background-color: rgba(0,0,0,.5);
+    color: #fff;
+  justify-content: center;
+  animation: swipe 2s ease-in-out;
+  text-align: center;
+
+}
+.card-img-top {
+  display: block;
+  margin: 0 auto;
+}
+#bookRecommender {
+  transition: opacity 0.5s ease-in-out;
+}
+
+#bookRecommender.hidden {
+  opacity: 0;
+}
+</style>
+
+<body >
+
+    <nav class="navbar" style="background-color:#FF9900">
+        <a class="navbar-brand animated" id="bookRecommender" style="color: #003366;">My Book Recommender</a>
+
+            <ul class="nav navbar-nav">
+                <li><a href="/" style="color: #003366;">Home</a></li>
+                <li><a href="/recommend" style="color: #003366;">Recommend</a></li>
+                <li><a href="/about" style="color: #003366;">About</a></li>
+            </ul>
     </nav>
 
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
-                <h1 class="text-white" style="font-size:50px">Top 50 Books</h1>
-            </div>
+           <h1 data-heading="i">TOP 50 BOOKS</h1>
 
             {% for i in range(book_name|length) %}
                 <div class="col-md-3" style="margin-top:50px">
@@ -36,7 +80,7 @@
                             <p class="text-white">{{ book_name[i] }}</p>
                             <h4 class="text-white">{{ author[i] }}</h4>
                             <h4 class="text-white">Votes - {{ votes[i] }}</h4>
-                            <h4 class="text-white">Rating - {{ rating[i] }}</h4>
+                            <h4 class="text-white">Rating - {{  "%.2f"|format(rating[i]) }}</h4>
                         </div>
                     </div>
                 </div>
@@ -47,4 +91,13 @@
     </div>
 
 </body>
+<script>
+var bookRecommender = document.getElementById("bookRecommender");
+
+bookRecommender.addEventListener("mouseenter", function() {
+  bookRecommender.classList.add("hidden");
+});
+
+</script>
+
 </html>
