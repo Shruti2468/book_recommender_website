@@ -41,6 +41,9 @@ def recommend():
 
     print(data)
     return render_template('recommend.html',data=data)
+@app.route('/about')
+def music_ui():
+    return render_template('about.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
